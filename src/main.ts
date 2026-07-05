@@ -121,7 +121,7 @@ async function loadAllFrames(m: FrameManifest) {
    The single 13s take moves through the home faster than the page
    scrolls, so we pin story moments to page landmarks: the film's
    arrival/living/visit/protected beats stay under the matching copy. */
-const FILM_ANCHORS = [0, 0.27, 0.54, 0.8, 1]; // fractions of the film
+const FILM_ANCHORS = [0, 0.31, 0.48, 0.78, 1]; // fractions of the film
 let pageAnchors = [0, 0.35, 0.62, 0.85, 1]; //   fractions of the journey scroll
 
 function computePageAnchors() {
@@ -170,7 +170,7 @@ const stops = Array.from(rail.querySelectorAll<HTMLElement>(".rail-stop"));
 
 function updateRail(fp: number) {
   railFill.style.height = `${(fp * 100).toFixed(2)}%`;
-  const chapter = fp < 0.27 ? 0 : fp < 0.54 ? 1 : fp < 0.8 ? 2 : 3;
+  const chapter = fp < 0.31 ? 0 : fp < 0.48 ? 1 : fp < 0.78 ? 2 : 3;
   stops.forEach((s, i) => s.classList.toggle("active", i === chapter));
 }
 
@@ -297,3 +297,7 @@ async function boot() {
 }
 
 void boot();
+
+// test hook: lets automated checks observe scrub state
+(window as unknown as Record<string, unknown>).__film = film;
+(window as unknown as Record<string, unknown>).__lenis = lenis;
