@@ -234,11 +234,12 @@ async function boot() {
   });
 
   /* header state */
-  ScrollTrigger.create({
-    start: 60,
-    onToggle: (self) =>
-      document.getElementById("site-header")!.classList.toggle("scrolled", self.isActive),
-  });
+  const header = document.getElementById("site-header")!;
+  const setHeaderState = () =>
+    header.classList.toggle("scrolled", (window.scrollY || 0) > 60);
+  lenis.on("scroll", setHeaderState);
+  window.addEventListener("scroll", setHeaderState, { passive: true });
+  setHeaderState();
 
   /* text reveals pinned to scroll position */
   document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((el) => {

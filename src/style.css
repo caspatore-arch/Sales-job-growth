@@ -158,9 +158,15 @@ canvas {
   font-family: var(--serif);
   font-weight: 560;
   font-size: 1.35rem;
-  color: var(--ink);
+  color: #fdf9f0;
   text-decoration: none;
   letter-spacing: -0.01em;
+  text-shadow: 0 1px 18px rgba(32, 26, 16, 0.45);
+  transition: color 0.4s ease, text-shadow 0.4s ease;
+}
+.site-header.scrolled .wordmark {
+  color: var(--ink);
+  text-shadow: none;
 }
 .wordmark span {
   color: var(--amber);
@@ -171,14 +177,21 @@ canvas {
   gap: 1.4rem;
 }
 .header-phone {
-  color: var(--ink-soft);
+  color: rgba(253, 249, 240, 0.92);
   text-decoration: none;
   font-size: 0.92rem;
   font-weight: 500;
   letter-spacing: 0.02em;
+  text-shadow: 0 1px 14px rgba(32, 26, 16, 0.5);
+  transition: color 0.4s ease, text-shadow 0.4s ease;
 }
-.header-phone:hover {
-  color: var(--ink);
+.site-header.scrolled .header-phone {
+  color: var(--ink-soft);
+  text-shadow: none;
+}
+.header-phone:hover,
+.site-header.scrolled .header-phone:hover {
+  color: var(--amber-deep);
 }
 
 /* ——— progress rail ——— */
