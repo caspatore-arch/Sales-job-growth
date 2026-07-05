@@ -1,244 +1,299 @@
-import './style.css'
-import Lenis from 'lenis'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import "./style.css";
+import Lenis from "lenis";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
-// ---------------------------------------------------------------------------
-// Media — hosted on Higgsfield's CDN (generated cinematic assets)
-// ---------------------------------------------------------------------------
-const MEDIA = {
-  heroPoster: 'https://d8j0ntlcm91z4.cloudfront.net/user_3G3CWRI9ds4ukRa5TYS4FK9qJ8j/hf_20260704_185713_3491b944-8be4-4c07-ad35-f4fa81edc9fa.png',
-  heroOrbit: 'https://d8j0ntlcm91z4.cloudfront.net/user_3G3CWRI9ds4ukRa5TYS4FK9qJ8j/hf_20260704_190007_4a38ede1-2969-40ff-8bb6-8d6c90cdb954.mp4',
-  macro: 'https://d8j0ntlcm91z4.cloudfront.net/user_3G3CWRI9ds4ukRa5TYS4FK9qJ8j/hf_20260704_190008_7306a14e-7b0c-4a50-80c5-1dea5c9c3ef5.mp4',
-  exploded: 'https://d8j0ntlcm91z4.cloudfront.net/user_3G3CWRI9ds4ukRa5TYS4FK9qJ8j/hf_20260704_190011_8162c5c2-7e54-403c-9b89-6bb4b1adcbff.mp4',
-  atmosphere: 'https://d8j0ntlcm91z4.cloudfront.net/user_3G3CWRI9ds4ukRa5TYS4FK9qJ8j/hf_20260704_190012_c35b3eaa-335f-47ce-9843-d6cb71ea4b00.mp4',
-}
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <nav class="nav">
-    <span class="nav__mark">NEXUS<span class="nav__mark-dot">/</span>IMPLEMENTATIONS</span>
-    <a class="nav__cta" href="#waitlist">Request Access</a>
-  </nav>
-
-  <section class="hero" id="hero">
-    <div class="hero__stage">
-      <video class="hero__video" src="${MEDIA.heroOrbit}" poster="${MEDIA.heroPoster}" muted playsinline preload="auto"></video>
-      <div class="hero__scrim"></div>
-    </div>
-    <div class="hero__copy">
-      <p class="eyebrow" data-reveal>Introducing the first autonomous orchestration engine</p>
-      <h1 class="wordmark" data-track>NEXUS IMPLEMENTATIONS</h1>
-      <p class="hero__product" data-reveal>THE CONDUIT</p>
-      <p class="hero__sub" data-reveal>Every tool you own, one reasoning core. Deployed quietly. Tuned by hand.</p>
-    </div>
-    <div class="scroll-cue" data-reveal><span></span>Scroll</div>
-  </section>
-
-  <section class="story" id="story">
-    <p class="story__eyebrow">Engineered in the Dark</p>
-    <h2 class="story__line">We spent eighteen months on a product with no visible interface.</h2>
-    <p class="story__body">No dashboards to admire. No screens to demo. Just an engine that reads your systems, decides, and acts &mdash; correctly, quietly, every time. The Conduit is the result of that obsession: the part of the stack you stop thinking about.</p>
-  </section>
-
-  <section class="macro" id="macro">
-    <div class="macro__stage">
-      <video class="macro__video" src="${MEDIA.macro}" muted playsinline preload="auto"></video>
-      <div class="macro__scrim"></div>
-    </div>
-    <div class="macro__labels">
-      <div class="macro__label" data-macro-label style="--x: 18%; --y: 28%;">
-        <span class="macro__label-dot"></span>
-        <span class="macro__label-text">Reasoning Core &mdash; decides what runs, and when</span>
-      </div>
-      <div class="macro__label" data-macro-label style="--x: 68%; --y: 42%;">
-        <span class="macro__label-dot"></span>
-        <span class="macro__label-text">Memory Lattice &mdash; every decision, recallable</span>
-      </div>
-      <div class="macro__label" data-macro-label style="--x: 40%; --y: 74%;">
-        <span class="macro__label-dot"></span>
-        <span class="macro__label-text">Tool Bus &mdash; native to your stack, not bolted on</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="exploded" id="exploded">
-    <div class="exploded__stage">
-      <video class="exploded__video" src="${MEDIA.exploded}" muted playsinline preload="auto"></video>
-      <div class="exploded__scrim"></div>
-    </div>
-    <div class="exploded__intro">
-      <p class="eyebrow">Under the hood</p>
-      <h2>Four components. One converged engine.</h2>
-    </div>
-    <div class="specs">
-      <div class="spec" data-spec>
-        <span class="spec__value">128-core</span>
-        <span class="spec__label">inference mesh</span>
-      </div>
-      <div class="spec" data-spec>
-        <span class="spec__value">42ms</span>
-        <span class="spec__label">median decision latency</span>
-      </div>
-      <div class="spec" data-spec>
-        <span class="spec__value">40+</span>
-        <span class="spec__label">native tool integrations</span>
-      </div>
-      <div class="spec" data-spec>
-        <span class="spec__value">99.98%</span>
-        <span class="spec__label">autonomous uptime</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="cohort" id="cohort">
-    <video class="cohort__video" src="${MEDIA.atmosphere}" muted playsinline preload="auto" loop autoplay></video>
-    <div class="cohort__scrim"></div>
-    <div class="cohort__copy">
-      <p class="eyebrow">Founding Cohort &mdash; 12 seats</p>
-      <h2>We implement The Conduit ourselves, inside your stack.</h2>
-      <p class="cohort__price">$18,000/mo &middot; 12-month engagement &middot; by application only</p>
-    </div>
-  </section>
-
-  <section class="waitlist" id="waitlist">
-    <p class="eyebrow">Apply for the founding cohort</p>
-    <h2>Twelve seats. No demos, no decks.</h2>
-    <form class="waitlist__form" data-waitlist-form>
-      <input type="email" required placeholder="you@company.com" aria-label="Work email" />
-      <button type="submit">Request Access</button>
-    </form>
-    <p class="waitlist__note" data-waitlist-note></p>
-    <footer class="footer">
-      <span>Nexus Implementations</span>
-      <span>&copy; 2026. All systems, one core.</span>
-    </footer>
-  </section>
-`
-
-// ---------------------------------------------------------------------------
-// Smooth scroll
-// ---------------------------------------------------------------------------
+/* ————— smooth scroll ————— */
 const lenis = new Lenis({
-  duration: 1.2,
-  smoothWheel: true,
-})
+  lerp: 0.09,
+  smoothWheel: !reduceMotion,
+});
+lenis.on("scroll", ScrollTrigger.update);
+gsap.ticker.add((time) => lenis.raf(time * 1000));
+gsap.ticker.lagSmoothing(0);
 
-lenis.on('scroll', ScrollTrigger.update)
-
-gsap.ticker.add((time) => {
-  lenis.raf(time * 1000)
-})
-gsap.ticker.lagSmoothing(0)
-
-// ---------------------------------------------------------------------------
-// Hero: pinned scroll-scrub through the orbit video + text choreography
-// ---------------------------------------------------------------------------
-const heroVideo = document.querySelector<HTMLVideoElement>('.hero__video')!
-
-function scrubVideo(video: HTMLVideoElement, progress: number) {
-  if (!video.duration || Number.isNaN(video.duration)) return
-  video.currentTime = Math.min(Math.max(progress, 0), 1) * video.duration
+/* ————— the film: scroll-scrubbed frame sequence ————— */
+interface FrameManifest {
+  count: number;
+  prefix: string; // e.g. "/frames/frame_"
+  pad: number; //    e.g. 4  -> frame_0001
+  ext: string; //    e.g. "webp"
 }
 
-gsap.timeline({
-  scrollTrigger: {
-    trigger: '#hero',
-    start: 'top top',
-    end: '+=250%',
-    pin: true,
-    scrub: 0.4,
-    onUpdate: (self) => scrubVideo(heroVideo, self.progress),
-  },
-})
-  .fromTo(
-    '.wordmark',
-    { letterSpacing: '0.6em', opacity: 0 },
-    { letterSpacing: '0.08em', opacity: 1, duration: 0.2 },
+const canvas = document.getElementById("film") as HTMLCanvasElement;
+const ctx = canvas.getContext("2d")!;
+const journey = document.getElementById("journey")!;
+
+const film = {
+  images: [] as (HTMLImageElement | undefined)[],
+  loaded: [] as boolean[],
+  count: 0,
+  frame: 0, // fractional video position 0..count-1
+  drawnIndex: -1,
+};
+
+function frameSrc(m: FrameManifest, i: number): string {
+  return `${m.prefix}${String(i + 1).padStart(m.pad, "0")}.${m.ext}`;
+}
+
+function nearestLoaded(i: number): number {
+  if (film.loaded[i]) return i;
+  for (let d = 1; d < film.count; d++) {
+    if (film.loaded[i - d]) return i - d;
+    if (film.loaded[i + d]) return i + d;
+  }
+  return -1;
+}
+
+function drawCover(img: HTMLImageElement) {
+  const cw = canvas.width;
+  const ch = canvas.height;
+  const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
+  const w = img.naturalWidth * scale;
+  const h = img.naturalHeight * scale;
+  ctx.drawImage(img, (cw - w) / 2, (ch - h) / 2, w, h);
+}
+
+function render(force = false) {
+  const want = Math.round(film.frame);
+  const idx = nearestLoaded(Math.max(0, Math.min(film.count - 1, want)));
+  if (idx < 0) return;
+  if (!force && idx === film.drawnIndex) return;
+  const img = film.images[idx];
+  if (!img) return;
+  drawCover(img);
+  film.drawnIndex = idx;
+}
+
+function sizeCanvas() {
+  const dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+  canvas.width = Math.round(canvas.clientWidth * dpr);
+  canvas.height = Math.round(canvas.clientHeight * dpr);
+  render(true);
+}
+window.addEventListener("resize", sizeCanvas);
+
+function loadFrame(m: FrameManifest, i: number): Promise<void> {
+  if (film.images[i]) return Promise.resolve();
+  const img = new Image();
+  img.decoding = "async";
+  film.images[i] = img;
+  return new Promise((resolve) => {
+    img.onload = () => {
+      film.loaded[i] = true;
+      if (Math.abs(i - Math.round(film.frame)) < 3) render(true);
+      resolve();
+    };
+    img.onerror = () => resolve();
+    img.src = frameSrc(m, i);
+  });
+}
+
+/** Load in coarse-to-fine passes so early scrubbing already works. */
+async function loadAllFrames(m: FrameManifest) {
+  const order: number[] = [];
+  const seen = new Set<number>();
+  for (const stride of [16, 4, 1]) {
+    for (let i = 0; i < m.count; i += stride) {
+      if (!seen.has(i)) {
+        seen.add(i);
+        order.push(i);
+      }
+    }
+  }
+  const CONCURRENCY = 8;
+  let cursor = 0;
+  await Promise.all(
+    Array.from({ length: CONCURRENCY }, async () => {
+      while (cursor < order.length) {
+        const i = order[cursor++];
+        await loadFrame(m, i);
+      }
+    })
+  );
+}
+
+/* ————— mapping page progress → film progress —————
+   The single 13s take moves through the home faster than the page
+   scrolls, so we pin story moments to page landmarks: the film's
+   arrival/living/visit/protected beats stay under the matching copy. */
+const FILM_ANCHORS = [0, 0.27, 0.54, 0.8, 1]; // fractions of the film
+let pageAnchors = [0, 0.35, 0.62, 0.85, 1]; //   fractions of the journey scroll
+
+function computePageAnchors() {
+  const vh = window.innerHeight;
+  const total = journey.offsetHeight - vh;
+  if (total <= 0) return;
+  const bottomOf = (sel: string): number => {
+    const el = journey.querySelector<HTMLElement>(sel);
+    if (!el) return 0;
+    let top = 0;
+    let node: HTMLElement | null = el;
+    while (node && node !== journey) {
+      top += node.offsetTop;
+      node = node.offsetParent as HTMLElement | null;
+    }
+    return Math.max(0, Math.min(1, (top + el.offsetHeight - vh) / total));
+  };
+  pageAnchors = [
     0,
-  )
-  .to('[data-reveal]', { opacity: 1, y: 0, duration: 0.15, stagger: 0.05 }, 0.15)
-  .to('.hero__copy', { opacity: 0, duration: 0.15 }, 0.75)
-  .to('.scroll-cue', { opacity: 0, duration: 0.1 }, 0.05)
+    bottomOf(".beat-problem"),
+    bottomOf(".beat-handle"),
+    bottomOf(".beat-21"),
+    1,
+  ];
+}
 
-// ---------------------------------------------------------------------------
-// Story: simple fade/rise reveal
-// ---------------------------------------------------------------------------
-gsap.from('.story__line, .story__body, .story__eyebrow', {
-  opacity: 0,
-  y: 24,
-  duration: 0.8,
-  stagger: 0.1,
-  scrollTrigger: {
-    trigger: '.story',
-    start: 'top 70%',
-  },
-})
+function filmProgress(p: number): number {
+  for (let s = 0; s < pageAnchors.length - 1; s++) {
+    const a = pageAnchors[s];
+    const b = pageAnchors[s + 1];
+    if (p <= b || s === pageAnchors.length - 2) {
+      const t = b > a ? (p - a) / (b - a) : 1;
+      return (
+        FILM_ANCHORS[s] +
+        Math.max(0, Math.min(1, t)) * (FILM_ANCHORS[s + 1] - FILM_ANCHORS[s])
+      );
+    }
+  }
+  return 1;
+}
 
-// ---------------------------------------------------------------------------
-// Macro: pinned scrub through macro clip + sequential label callouts
-// ---------------------------------------------------------------------------
-const macroVideo = document.querySelector<HTMLVideoElement>('.macro__video')!
-const macroLabels = gsap.utils.toArray<HTMLElement>('[data-macro-label]')
+/* ————— progress rail ————— */
+const rail = document.getElementById("rail")!;
+const railFill = document.getElementById("rail-fill")!;
+const stops = Array.from(rail.querySelectorAll<HTMLElement>(".rail-stop"));
 
-const macroTl = gsap.timeline({
-  scrollTrigger: {
-    trigger: '#macro',
-    start: 'top top',
-    end: '+=200%',
-    pin: true,
-    scrub: 0.4,
-    onUpdate: (self) => scrubVideo(macroVideo, self.progress),
-  },
-})
-macroLabels.forEach((label, i) => {
-  const start = 0.15 + i * 0.25
-  macroTl.to(label, { opacity: 1, duration: 0.15 }, start)
-  macroTl.to(label, { opacity: 0, duration: 0.15 }, start + 0.22)
-})
+function updateRail(fp: number) {
+  railFill.style.height = `${(fp * 100).toFixed(2)}%`;
+  const chapter = fp < 0.27 ? 0 : fp < 0.54 ? 1 : fp < 0.8 ? 2 : 3;
+  stops.forEach((s, i) => s.classList.toggle("active", i === chapter));
+}
 
-// ---------------------------------------------------------------------------
-// Exploded: pinned scrub through exploded-assembly clip + spec reveals
-// ---------------------------------------------------------------------------
-const explodedVideo = document.querySelector<HTMLVideoElement>('.exploded__video')!
-const specs = gsap.utils.toArray<HTMLElement>('[data-spec]')
+/* ————— boot ————— */
+async function boot() {
+  sizeCanvas();
 
-const explodedTl = gsap.timeline({
-  scrollTrigger: {
-    trigger: '#exploded',
-    start: 'top top',
-    end: '+=250%',
-    pin: true,
-    scrub: 0.4,
-    onUpdate: (self) => scrubVideo(explodedVideo, self.progress),
-  },
-})
-explodedTl.to('.exploded__intro', { opacity: 1, y: 0, duration: 0.15 }, 0.02)
-specs.forEach((spec, i) => {
-  explodedTl.to(spec, { opacity: 1, y: 0, duration: 0.15 }, 0.35 + i * 0.12)
-})
+  let manifest: FrameManifest | null = null;
+  try {
+    const res = await fetch("/frames/manifest.json");
+    if (res.ok) manifest = (await res.json()) as FrameManifest;
+  } catch {
+    manifest = null;
+  }
 
-// ---------------------------------------------------------------------------
-// Founding cohort atmosphere reveal
-// ---------------------------------------------------------------------------
-gsap.from('.cohort__copy', {
-  opacity: 0,
-  y: 30,
-  duration: 0.9,
-  scrollTrigger: {
-    trigger: '.cohort',
-    start: 'top 60%',
-  },
-})
+  if (manifest && manifest.count > 0) {
+    film.count = manifest.count;
+    await loadFrame(manifest, 0);
+    render(true);
+    void loadAllFrames(manifest);
+  } else {
+    // graceful fallback: hold the poster while media assets are absent
+    const poster = new Image();
+    poster.onload = () => {
+      film.images[0] = poster;
+      film.loaded[0] = true;
+      film.count = 1;
+      render(true);
+    };
+    poster.src = "/media/poster.jpg";
+  }
 
-// ---------------------------------------------------------------------------
-// Waitlist form (demo submit)
-// ---------------------------------------------------------------------------
-const form = document.querySelector<HTMLFormElement>('[data-waitlist-form]')!
-const note = document.querySelector<HTMLParagraphElement>('[data-waitlist-note]')!
-form.addEventListener('submit', (e) => {
-  e.preventDefault()
-  note.textContent = 'Request received. We review applications weekly.'
-  form.reset()
-})
+  computePageAnchors();
+
+  ScrollTrigger.create({
+    trigger: journey,
+    start: "top top",
+    end: "bottom bottom",
+    onUpdate: (self) => {
+      const fp = filmProgress(self.progress);
+      if (film.count > 1) {
+        film.frame = fp * (film.count - 1);
+        render();
+      }
+      updateRail(fp);
+    },
+    onToggle: (self) => rail.classList.toggle("visible", self.isActive),
+  });
+
+  ScrollTrigger.addEventListener("refreshInit", computePageAnchors);
+
+  /* rail contrast: cream panels vs film */
+  rail.classList.add("on-film");
+  document.querySelectorAll<HTMLElement>(".beat-panel").forEach((panel) => {
+    ScrollTrigger.create({
+      trigger: panel,
+      start: "top 55%",
+      end: "bottom 45%",
+      onToggle: (self) => rail.classList.toggle("on-film", !self.isActive),
+    });
+  });
+
+  /* header state */
+  ScrollTrigger.create({
+    start: 60,
+    onToggle: (self) =>
+      document.getElementById("site-header")!.classList.toggle("scrolled", self.isActive),
+  });
+
+  /* text reveals pinned to scroll position */
+  document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((el) => {
+    gsap.from(el, {
+      opacity: 0,
+      y: reduceMotion ? 0 : 36,
+      duration: 1.1,
+      ease: "power3.out",
+      scrollTrigger: { trigger: el, start: "top 82%" },
+    });
+  });
+
+  /* the problem: one line per scroll step, fading through */
+  document.querySelectorAll<HTMLElement>(".problem-line p").forEach((line, i, all) => {
+    const last = i === all.length - 1;
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: line.parentElement,
+        start: "top 70%",
+        end: "bottom 45%",
+        scrub: true,
+      },
+    });
+    tl.fromTo(line, { opacity: 0, y: 60 }, { opacity: 1, y: 0, ease: "none" });
+    if (!last) tl.to(line, { opacity: 0, y: -60, ease: "none" }, "+=0.35");
+  });
+
+  /* gentle parallax on marked elements */
+  if (!reduceMotion) {
+    document.querySelectorAll<HTMLElement>("[data-parallax]").forEach((el) => {
+      const speed = parseFloat(el.dataset.parallax || "0.1");
+      gsap.to(el, {
+        yPercent: -100 * speed,
+        ease: "none",
+        scrollTrigger: {
+          trigger: el.closest("section"),
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    });
+  }
+
+  /* anchor links ride the smooth scroll */
+  document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const id = a.getAttribute("href")!;
+      const target = id === "#top" ? document.body : document.querySelector(id);
+      if (target) {
+        e.preventDefault();
+        lenis.scrollTo(target as HTMLElement, { offset: id === "#top" ? 0 : -80 });
+      }
+    });
+  });
+}
+
+void boot();
