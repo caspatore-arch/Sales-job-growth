@@ -36,8 +36,10 @@ const film = {
   drawnIndex: -1,
 };
 
+const BASE = import.meta.env.BASE_URL;
+
 function frameSrc(m: FrameManifest, i: number): string {
-  return `${m.prefix}${String(i + 1).padStart(m.pad, "0")}.${m.ext}`;
+  return `${BASE}${m.prefix}${String(i + 1).padStart(m.pad, "0")}.${m.ext}`;
 }
 
 function nearestLoaded(i: number): number {
@@ -180,7 +182,7 @@ async function boot() {
 
   let manifest: FrameManifest | null = null;
   try {
-    const res = await fetch("/frames/manifest.json");
+    const res = await fetch(`${BASE}frames/manifest.json`);
     if (res.ok) manifest = (await res.json()) as FrameManifest;
   } catch {
     manifest = null;
@@ -200,7 +202,7 @@ async function boot() {
       film.count = 1;
       render(true);
     };
-    poster.src = "/media/poster.jpg";
+    poster.src = `${BASE}media/poster.jpg`;
   }
 
   computePageAnchors();
