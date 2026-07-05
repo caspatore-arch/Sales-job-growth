@@ -19,11 +19,11 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # no `environment:` block — the auto-created github-pages environment's
+  # branch policy only allows the branch that first enabled Pages, and
+  # declaring the environment gets this branch rejected at job start.
   deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
