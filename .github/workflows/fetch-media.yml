@@ -1,0 +1,39 @@
+name: Fetch generated media
+
+on:
+  push:
+    branches:
+      - claude/tony-techs-init-h57ofk
+    paths:
+      - media-manifest.json
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download media listed in manifest
+        run: |
+          set -euo pipefail
+          count=$(jq length media-manifest.json)
+          [ "$count" -gt 0 ] || { echo "empty manifest, nothing to do"; exit 0; }
+          for i in $(seq 0 $((count - 1))); do
+            url=$(jq -r ".[$i].url" media-manifest.json)
+            path=$(jq -r ".[$i].path" media-manifest.json)
+            mkdir -p "$(dirname "$path")"
+            echo "fetching $url -> $path"
+            curl -fsSL --retry 3 -o "$path" "$url"
+            ls -la "$path"
+          done
+      - name: Commit fetched media
+        run: |
+          set -euo pipefail
+          git config user.name "media-fetch-bot"
+          git config user.email "actions@github.com"
+          git add -A
+          git diff --cached --quiet && { echo "nothing new"; exit 0; }
+          git commit -m "Add fetched media assets"
+          git push
