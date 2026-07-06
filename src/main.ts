@@ -16,10 +16,13 @@ const MEDIA = {
   atmosphere: 'https://d8j0ntlcm91z4.cloudfront.net/user_3G3CWRI9ds4ukRa5TYS4FK9qJ8j/hf_20260704_190012_c35b3eaa-335f-47ce-9843-d6cb71ea4b00.mp4',
 }
 
+// Booking link — Nexus Implementations Stage 2 call
+const CALENDLY = 'https://calendly.com/caspatore/nexus-stage-2-call'
+
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <nav class="nav">
     <span class="nav__mark">NEXUS<span class="nav__mark-dot">/</span>IMPLEMENTATIONS</span>
-    <a class="nav__cta" href="#waitlist">Request Access</a>
+    <a class="nav__cta" href="${CALENDLY}" target="_blank" rel="noopener">Book a Call</a>
   </nav>
 
   <section class="hero" id="hero">
@@ -110,6 +113,10 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <button type="submit">Request Access</button>
     </form>
     <p class="waitlist__note" data-waitlist-note></p>
+    <div class="waitlist__book">
+      <span class="waitlist__book-or">or</span>
+      <a class="waitlist__book-link" href="${CALENDLY}" target="_blank" rel="noopener">Book a Stage 2 call &rarr;</a>
+    </div>
     <footer class="footer">
       <span>Nexus Implementations</span>
       <span>&copy; 2026. All systems, one core.</span>
@@ -239,6 +246,6 @@ const form = document.querySelector<HTMLFormElement>('[data-waitlist-form]')!
 const note = document.querySelector<HTMLParagraphElement>('[data-waitlist-note]')!
 form.addEventListener('submit', (e) => {
   e.preventDefault()
-  note.textContent = 'Request received. We review applications weekly.'
+  note.innerHTML = 'Request received. Skip the queue &mdash; <a href="' + CALENDLY + '" target="_blank" rel="noopener">book a Stage 2 call</a>.'
   form.reset()
 })
