@@ -1,0 +1,24 @@
+{
+  "business": {
+    "name": "Bright Smile Dental",
+    "industry": "dental office",
+    "hours": "Monday to Friday, 9am to 5pm",
+    "address": "123 Market Street, Suite 400, San Francisco",
+    "services": ["cleanings", "whitening", "fillings", "emergency appointments"],
+    "faqs": [
+      { "q": "Do you take insurance?", "a": "Yes, we accept most major dental insurance plans. Bring your insurance card to your first visit." },
+      { "q": "Do you see new patients?", "a": "Yes, we're accepting new patients and usually have openings within a week." },
+      { "q": "Where can I park?", "a": "There's a parking garage next door on Market Street; we validate for one hour." }
+    ]
+  },
+  "voice": {
+    "greeting": "Thanks for calling Bright Smile Dental! This is the front desk assistant. How can I help you today?"
+  },
+  "actions": {
+    "booking_link": "https://calendly.com/bright-smile-dental/new-patient",
+    "transfer_number": "+14155550100"
+  },
+  "phone": {
+    "area_code": "415"
+  }
+}
