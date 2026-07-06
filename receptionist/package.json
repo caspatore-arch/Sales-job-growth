@@ -1,0 +1,15 @@
+{
+  "name": "nexus-receptionist",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Config-driven AI receptionist deployments on Retell AI",
+  "scripts": {
+    "deploy": "tsx src/deploy.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

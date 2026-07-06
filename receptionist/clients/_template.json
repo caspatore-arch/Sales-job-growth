@@ -1,0 +1,25 @@
+{
+  "business": {
+    "name": "REQUIRED — Business name as the agent should say it",
+    "industry": "REQUIRED — e.g. dental office, plumbing company, hair salon",
+    "hours": "REQUIRED — e.g. Mon-Fri 9am-5pm, Sat 10am-2pm",
+    "address": "OPTIONAL — street address the agent can read to callers",
+    "services": ["REQUIRED — at least one service, e.g. cleanings", "whitening"],
+    "faqs": [
+      { "q": "OPTIONAL — a question callers commonly ask", "a": "The answer the agent should give" }
+    ]
+  },
+  "voice": {
+    "voice_id": "OPTIONAL — Retell voice id, defaults to 11labs-Adrian",
+    "greeting": "OPTIONAL — first thing the agent says; defaults to 'Thank you for calling <name>. How can I help you today?'"
+  },
+  "actions": {
+    "booking_link": "OPTIONAL — https:// booking page (Calendly etc.); agent reads it to callers who want appointments",
+    "transfer_number": "OPTIONAL — E.164 number like +14155551234; enables transfer-to-human",
+    "webhook_url": "OPTIONAL — https:// Apps Script web app URL; logs every call to the client's Google Sheet"
+  },
+  "phone": {
+    "area_code": "OPTIONAL — 3-digit US area code for the purchased number, e.g. 415"
+  },
+  "llm_model": "OPTIONAL — Retell LLM model override; omit to use Retell's default"
+}
