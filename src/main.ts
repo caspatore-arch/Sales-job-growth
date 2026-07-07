@@ -6,9 +6,31 @@ const CALENDLY = 'https://calendly.com/caspatore/nexus-stage-2-call'
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
+// Nexus mark: an "N" drawn as four connected nodes meeting at a central hub.
+// Gradient/mask ids must be unique per instance, hence the id suffix.
+const logoMark = (size: number, id: string) => `
+  <svg class="logo-mark" width="${size}" height="${size}" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="nx-grad-${id}" x1="15" y1="15" x2="49" y2="49" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#35c2e6"/>
+        <stop offset="1" stop-color="#7c8cff"/>
+      </linearGradient>
+      <mask id="nx-hub-${id}">
+        <rect width="64" height="64" fill="#fff"/>
+        <circle cx="32" cy="32" r="7.6" fill="#000"/>
+      </mask>
+    </defs>
+    <path d="M15 49V15l34 34V15" mask="url(#nx-hub-${id})" stroke="url(#nx-grad-${id})" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="15" cy="15" r="6" fill="url(#nx-grad-${id})"/>
+    <circle cx="15" cy="49" r="6" fill="url(#nx-grad-${id})"/>
+    <circle cx="49" cy="15" r="6" fill="url(#nx-grad-${id})"/>
+    <circle cx="49" cy="49" r="6" fill="url(#nx-grad-${id})"/>
+    <circle cx="32" cy="32" r="4.2" fill="url(#nx-grad-${id})"/>
+  </svg>`
+
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <nav class="nav">
-    <a class="nav__mark" href="#top">Nexus<span class="nav__mark-dot"> </span>Implementations</a>
+    <a class="nav__mark" href="#top">${logoMark(24, 'nav')}Nexus<span class="nav__mark-dot"> </span>Implementations</a>
     <a class="nav__cta" href="${CALENDLY}" target="_blank" rel="noopener">Book a call</a>
   </nav>
 
@@ -187,7 +209,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 
   <footer class="footer">
     <div class="footer__row">
-      <span class="footer__brand">Nexus Implementations</span>
+      <span class="footer__brand">${logoMark(20, 'footer')}Nexus Implementations</span>
       <span>Marin County, CA</span>
       <a href="${CALENDLY}" target="_blank" rel="noopener">Book a call</a>
     </div>
