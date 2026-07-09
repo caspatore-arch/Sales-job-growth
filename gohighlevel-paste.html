@@ -1,0 +1,855 @@
+<!-- ================================================================
+     Nexus Implementations — full landing page, self-contained.
+     Paste this whole block into a GoHighLevel Custom Code / HTML element.
+     No external build, no npm modules. Fonts load from Google.
+
+     ALL "Book a call" / CTA buttons currently jump to the on-page
+     lead form (the "#demo" section). To point them somewhere else
+     inside HighLevel instead (a HighLevel calendar page, another
+     funnel step, a URL, etc.), search this file for  href="#demo"
+     and replace those hrefs with your target. There are 4 of them:
+     the top nav, the hero button, the footer, and the "Grab a call"
+     link. Leave the "See how it works" button as href="#how".
+     ================================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+#nexus-app {
+  --bg: #0a0c11;
+  --panel: #12151d;
+  --panel-2: #171b25;
+  --fg: #f4f6f9;
+  --fg-dim: #a3adbd;
+  --accent: #35c2e6;
+  --accent-2: #7c8cff;
+  --money: #46d187;
+  --danger: #ff5c5c;
+  --border: rgba(244, 246, 249, 0.1);
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  display: block;
+}
+
+#nexus-app * { box-sizing: border-box; }
+
+#nexus-app h1, #nexus-app h2, #nexus-app h3 { font-family: var(--font-display); margin: 0; line-height: 1.15; }
+#nexus-app a { color: inherit; }
+
+#nexus-app .eyebrow {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0 0 1rem;
+}
+
+#nexus-app .section__head {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  max-width: 20ch;
+}
+
+#nexus-app [data-reveal] { animation: nexusRevealUp 0.7s ease both; }
+#nexus-app [data-reveal]:nth-child(2) { animation-delay: 0.08s; }
+#nexus-app [data-reveal]:nth-child(3) { animation-delay: 0.16s; }
+#nexus-app [data-reveal]:nth-child(4) { animation-delay: 0.24s; }
+#nexus-app [data-reveal]:nth-child(5) { animation-delay: 0.32s; }
+@keyframes nexusRevealUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+#nexus-app .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.95rem 1.5rem;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 0.15s ease, filter 0.15s ease, background 0.15s ease;
+  line-height: 1.25;
+}
+#nexus-app .btn:active { transform: translateY(1px); }
+
+#nexus-app .btn--primary {
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  color: #06131a;
+}
+#nexus-app .btn--primary:hover { filter: brightness(1.08); }
+
+#nexus-app .btn--ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--fg);
+}
+#nexus-app .btn--ghost:hover { border-color: var(--accent); }
+
+#nexus-app .nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem clamp(1.1rem, 4vw, 3rem);
+  background: rgba(10, 12, 17, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+#nexus-app .nav__mark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.02rem;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+}
+#nexus-app .nav__mark-dot { color: var(--accent); }
+#nexus-app .nav__cta {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  padding: 0.55rem 1.05rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+#nexus-app .nav__cta:hover { border-color: var(--accent); background: rgba(53, 194, 230, 0.1); }
+
+#nexus-app .hero {
+  padding: clamp(2.5rem, 6vw, 5rem) clamp(1.1rem, 4vw, 3rem) clamp(3rem, 6vw, 5rem);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+#nexus-app .hero__grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+#nexus-app .hero__head {
+  font-size: clamp(2rem, 5.5vw, 3.6rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+#nexus-app .hero__head-accent { color: var(--fg-dim); }
+#nexus-app .hero__sub {
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  color: var(--fg-dim);
+  max-width: 46ch;
+  margin: 0 0 2rem;
+}
+#nexus-app .hero__actions {
+  display: flex;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.75rem;
+}
+#nexus-app .hero__note {
+  font-size: 0.95rem;
+  color: var(--fg-dim);
+  border-left: 2px solid var(--accent);
+  padding-left: 1rem;
+  max-width: 42ch;
+}
+
+#nexus-app .phone { display: flex; justify-content: center; }
+#nexus-app .phone__frame {
+  position: relative;
+  width: min(300px, 78vw);
+  aspect-ratio: 9 / 19;
+  background: #05070b;
+  border: 10px solid #1c2130;
+  border-radius: 38px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+  padding: 0;
+  overflow: hidden;
+}
+#nexus-app .phone__notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 42%;
+  height: 22px;
+  background: #1c2130;
+  border-radius: 0 0 14px 14px;
+  z-index: 3;
+}
+#nexus-app .phone__screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.5s ease;
+  background: linear-gradient(180deg, #0c1017, #0a0c11);
+}
+#nexus-app .phone__screen.is-calling { background: linear-gradient(180deg, #0e1a22, #0a0c11); }
+#nexus-app .phone__screen.is-missed { background: linear-gradient(180deg, #23111318, #0a0c11); }
+#nexus-app .phone__screen.is-booked { background: linear-gradient(180deg, #0e2018, #0a0c11); }
+
+#nexus-app .phone__status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.55rem 1.25rem 0.35rem;
+  font-size: 0.72rem;
+  color: var(--fg-dim);
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+#nexus-app .phone__signal { letter-spacing: 1px; font-size: 0.5rem; }
+#nexus-app .phone__stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.75rem 1rem 1.25rem;
+  min-height: 0;
+}
+
+#nexus-app .call { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+#nexus-app .call__avatar {
+  width: 74px; height: 74px;
+  border-radius: 50%;
+  background: #1a2230;
+  display: grid; place-items: center;
+  font-size: 2rem; color: var(--fg-dim);
+  margin-bottom: 0.5rem;
+  animation: nexusPulse 1.4s ease-in-out infinite;
+}
+#nexus-app .call__avatar--missed { background: rgba(255, 92, 92, 0.14); color: var(--danger); animation: none; }
+#nexus-app .call__label { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; margin: 0; }
+#nexus-app .call__label--missed { color: var(--danger); }
+#nexus-app .call__number { color: var(--fg-dim); font-size: 0.9rem; margin: 0; }
+#nexus-app .call__dots { display: flex; gap: 6px; margin-top: 0.75rem; }
+#nexus-app .call__dots span {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+  animation: nexusBounce 1.2s ease-in-out infinite;
+}
+#nexus-app .call__dots span:nth-child(2) { animation-delay: 0.15s; }
+#nexus-app .call__dots span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes nexusPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(53,194,230,0.4);} 50%{ box-shadow: 0 0 0 12px rgba(53,194,230,0);} }
+@keyframes nexusBounce { 0%,100%{ transform: translateY(0); opacity:0.5;} 50%{ transform: translateY(-5px); opacity:1;} }
+
+#nexus-app .thread { display: flex; flex-direction: column; gap: 0.5rem; justify-content: flex-end; height: 100%; }
+#nexus-app .thread__who { font-size: 0.65rem; color: var(--fg-dim); text-align: center; margin: 0 0 0.25rem; text-transform: uppercase; letter-spacing: 0.08em; }
+#nexus-app .bubble {
+  max-width: 82%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 16px;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  animation: nexusRise 0.35s ease both;
+}
+#nexus-app .bubble--out { align-self: flex-end; background: linear-gradient(120deg, var(--accent), var(--accent-2)); color: #06131a; border-bottom-right-radius: 5px; }
+#nexus-app .bubble--in { align-self: flex-start; background: #202634; color: var(--fg); border-bottom-left-radius: 5px; }
+#nexus-app .bubble.is-sent { opacity: 0.85; }
+
+@keyframes nexusRise { from { transform: translateY(8px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+#nexus-app .booked { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.35rem; }
+#nexus-app .booked__check {
+  width: 70px; height: 70px; border-radius: 50%;
+  background: rgba(70, 209, 135, 0.16); color: var(--money);
+  display: grid; place-items: center; font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  animation: nexusPop 0.4s ease both;
+}
+#nexus-app .booked__title { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; margin: 0; }
+#nexus-app .booked__meta { color: var(--fg-dim); font-size: 0.85rem; margin: 0; }
+#nexus-app .booked__ticket { color: var(--money); font-family: var(--font-display); font-weight: 700; font-size: 1rem; margin: 0.4rem 0 0; }
+@keyframes nexusPop { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+#nexus-app .stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+#nexus-app .stat {
+  background: var(--bg);
+  padding: 2rem 1.25rem;
+  text-align: center;
+}
+#nexus-app .stat__value { display: block; font-family: var(--font-display); font-weight: 700; font-size: clamp(1.8rem, 4vw, 2.6rem); }
+#nexus-app .stat__value--money { color: var(--money); }
+#nexus-app .stat__label { color: var(--fg-dim); font-size: 0.9rem; }
+
+#nexus-app .how, #nexus-app .services, #nexus-app .calc, #nexus-app .pricing, #nexus-app .founder, #nexus-app .lead {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(3.5rem, 8vw, 6rem) clamp(1.1rem, 4vw, 3rem);
+}
+
+#nexus-app .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+#nexus-app .step {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.75rem 1.5rem;
+}
+#nexus-app .step__num {
+  display: inline-grid; place-items: center;
+  width: 38px; height: 38px; border-radius: 10px;
+  background: rgba(53, 194, 230, 0.12);
+  color: var(--accent);
+  font-family: var(--font-display); font-weight: 700;
+  margin-bottom: 1rem;
+}
+#nexus-app .step h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+#nexus-app .step p { color: var(--fg-dim); font-size: 0.98rem; margin: 0; }
+
+#nexus-app .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+#nexus-app .card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+#nexus-app .card__top { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.75rem; }
+#nexus-app .card__top h3 { font-size: 1.1rem; }
+#nexus-app .card p { color: var(--fg-dim); font-size: 0.95rem; margin: 0; }
+#nexus-app .tag {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.28rem 0.6rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+#nexus-app .tag--live { background: rgba(70, 209, 135, 0.15); color: var(--money); }
+#nexus-app .tag--soon { background: rgba(163, 173, 189, 0.14); color: var(--fg-dim); }
+
+#nexus-app .calc__intro { text-align: center; margin: 0 auto 2.5rem; max-width: 40rem; }
+#nexus-app .calc__intro .section__head { margin-left: auto; margin-right: auto; margin-bottom: 1rem; }
+#nexus-app .calc__lead { color: var(--fg-dim); }
+#nexus-app .calc__panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+}
+#nexus-app .calc__inputs { display: flex; flex-direction: column; gap: 1.5rem; justify-content: center; }
+#nexus-app .field { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 0.4rem 1rem; }
+#nexus-app .field > span { grid-column: 1 / 2; font-size: 0.9rem; color: var(--fg-dim); }
+#nexus-app .field > output {
+  grid-column: 2 / 3; grid-row: 1 / 3;
+  font-family: var(--font-display); font-weight: 700; font-size: 1.15rem;
+  color: var(--fg); min-width: 4.5ch; text-align: right;
+}
+#nexus-app .field input[type='range'] {
+  grid-column: 1 / 2;
+  width: 100%;
+  -webkit-appearance: none; appearance: none;
+  height: 6px; border-radius: 999px;
+  background: var(--panel-2);
+  outline: none;
+}
+#nexus-app .field input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--accent); cursor: pointer; border: 3px solid var(--panel);
+}
+#nexus-app .field input[type='range']::-moz-range-thumb {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--accent); cursor: pointer; border: 3px solid var(--panel);
+}
+
+#nexus-app .calc__results {
+  background: var(--panel-2);
+  border-radius: 14px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.25rem;
+}
+#nexus-app .calc__big { text-align: center; }
+#nexus-app .calc__big-label { display: block; font-size: 0.85rem; color: var(--fg-dim); margin-bottom: 0.35rem; }
+#nexus-app .calc__big-value { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 6vw, 3rem); color: var(--money); }
+#nexus-app .calc__per { font-size: 1rem; color: var(--fg-dim); font-weight: 500; }
+#nexus-app .calc__split { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+#nexus-app .calc__split-item { text-align: center; padding: 0.85rem; background: var(--bg); border-radius: 10px; }
+#nexus-app .calc__split-value { display: block; font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; }
+#nexus-app .calc__split-value--money { color: var(--money); }
+#nexus-app .calc__split-label { font-size: 0.78rem; color: var(--fg-dim); }
+#nexus-app .calc__fine { font-size: 0.78rem; color: var(--fg-dim); margin: 0; text-align: center; }
+
+#nexus-app .pricing__list { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; max-width: 46rem; }
+#nexus-app .pricing__list li {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 12px;
+  padding: 1.15rem 1.35rem;
+  color: var(--fg-dim);
+}
+#nexus-app .pricing__list strong { color: var(--fg); font-weight: 600; }
+
+#nexus-app .founder { max-width: 900px; }
+#nexus-app .founder__inner {
+  background: linear-gradient(140deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: clamp(2rem, 5vw, 3.5rem);
+}
+#nexus-app .founder__quote { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 600; line-height: 1.3; margin-bottom: 1.5rem; }
+#nexus-app .founder__body { color: var(--fg-dim); font-size: 1.05rem; max-width: 54ch; }
+#nexus-app .founder__sign { font-family: var(--font-display); font-weight: 600; color: var(--fg); margin-top: 1.5rem; }
+
+#nexus-app .lead { max-width: 720px; text-align: center; }
+#nexus-app .lead .section__head { margin-left: auto; margin-right: auto; }
+#nexus-app .lead__sub { color: var(--fg-dim); max-width: 48ch; margin: 0 auto 2rem; }
+#nexus-app .lead__form { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1rem; }
+#nexus-app .lead__form input {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--fg);
+  padding: 0.95rem 1.1rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: var(--font-body);
+  min-width: 15rem;
+  flex: 1 1 15rem;
+  max-width: 20rem;
+}
+#nexus-app .lead__form input:focus { outline: none; border-color: var(--accent); }
+#nexus-app .lead__form .btn { flex: 0 0 auto; }
+#nexus-app .lead__note { color: var(--money); font-weight: 600; min-height: 1.4rem; margin: 0.5rem 0 0; opacity: 0; transition: opacity 0.3s ease; }
+#nexus-app .lead__note.is-shown { opacity: 1; }
+#nexus-app .lead__consent { font-size: 0.78rem; color: var(--fg-dim); max-width: 44ch; margin: 1.25rem auto 0; }
+#nexus-app .lead__or { font-size: 0.95rem; color: var(--fg-dim); margin-top: 1.5rem; }
+#nexus-app .lead__or a { color: var(--accent); text-decoration: none; font-weight: 600; }
+#nexus-app .lead__or a:hover { text-decoration: underline; }
+
+#nexus-app .footer {
+  border-top: 1px solid var(--border);
+  padding: 2.5rem clamp(1.1rem, 4vw, 3rem) 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+#nexus-app .footer__row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  color: var(--fg-dim);
+  margin-bottom: 1rem;
+}
+#nexus-app .footer__brand { font-family: var(--font-display); font-weight: 700; color: var(--fg); }
+#nexus-app .footer__row a { color: var(--accent); text-decoration: none; }
+#nexus-app .footer__legal { font-size: 0.78rem; color: var(--fg-dim); max-width: 70ch; margin: 0; }
+
+@media (max-width: 900px) {
+  #nexus-app .hero__grid { grid-template-columns: 1fr; }
+  #nexus-app .phone { order: -1; margin-bottom: 1rem; }
+  #nexus-app .steps, #nexus-app .cards { grid-template-columns: 1fr; }
+  #nexus-app .calc__panel { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  #nexus-app .stats { grid-template-columns: 1fr; }
+  #nexus-app .hero__actions .btn { width: 100%; }
+  #nexus-app .lead__form input, #nexus-app .lead__form .btn { width: 100%; max-width: none; flex-basis: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #nexus-app * { animation: none !important; scroll-behavior: auto !important; }
+}
+</style>
+
+<div id="nexus-app">
+  <nav class="nav">
+    <a class="nav__mark" href="#top">Nexus<span class="nav__mark-dot"> </span>Implementations</a>
+    <a class="nav__cta" href="#demo">Book a call</a>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero__grid">
+      <div class="hero__copy">
+        <p class="eyebrow">Missed-call rescue for home service pros &middot; Marin County</p>
+        <h1 class="hero__head">The call you just missed<br /><span class="hero__head-accent">already called someone else.</span></h1>
+        <p class="hero__sub">About half the people who call you won't leave a voicemail. They call the next plumber on Google. We text every missed caller back in about 10 seconds, answer their question, and book the job &mdash; before your competitor picks up.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#demo">Watch it rescue a call on your own line</a>
+          <a class="btn btn--ghost" href="#how">See how it works</a>
+        </div>
+        <p class="hero__note">Nothing about your day changes. Your phone still rings first. Setup is one forwarding code and a 10-minute form.</p>
+      </div>
+
+      <div class="phone" data-phone aria-hidden="true">
+        <div class="phone__frame">
+          <div class="phone__notch"></div>
+          <div class="phone__screen" data-phone-screen>
+            <div class="phone__status">
+              <span data-phone-time>7:42</span>
+              <span class="phone__signal">&#9679;&#9679;&#9679;&#9679;&#9679;</span>
+            </div>
+            <div class="phone__stage" data-phone-stage></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="stats">
+    <div class="stat">
+      <span class="stat__value">~10 sec</span>
+      <span class="stat__label">Every missed caller gets a text back</span>
+    </div>
+    <div class="stat">
+      <span class="stat__value">~half</span>
+      <span class="stat__label">Of callers never leave a voicemail</span>
+    </div>
+    <div class="stat">
+      <span class="stat__value stat__value--money">5&times;</span>
+      <span class="stat__label">The least you keep for every $1 you pay</span>
+    </div>
+  </section>
+
+  <section class="how" id="how">
+    <p class="eyebrow">How it works</p>
+    <h2 class="section__head">Three steps. Then it runs in the background.</h2>
+    <div class="steps">
+      <div class="step" data-reveal>
+        <span class="step__num">1</span>
+        <h3>Your phone rings first.</h3>
+        <p>Nothing changes. You answer like always. We only step in when a call goes unanswered.</p>
+      </div>
+      <div class="step" data-reveal>
+        <span class="step__num">2</span>
+        <h3>We text them back in seconds.</h3>
+        <p>The missed caller gets a text from your own number, gets their question answered, and books the job.</p>
+      </div>
+      <div class="step" data-reveal>
+        <span class="step__num">3</span>
+        <h3>You see every job, with receipts.</h3>
+        <p>Your dashboard shows calls rescued, jobs booked, and revenue recovered. Every line has a transcript.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="services">
+    <p class="eyebrow">What it does</p>
+    <h2 class="section__head">Every leak in your phone, plugged.</h2>
+    <div class="cards">
+      <div class="card" data-reveal>
+        <div class="card__top"><h3>Missed-call rescue</h3><span class="tag tag--live">Available</span></div>
+        <p>Every unanswered call gets a text back from your number in seconds. Most of them book instead of calling the next guy.</p>
+      </div>
+      <div class="card" data-reveal>
+        <div class="card__top"><h3>Dead-lead revival</h3><span class="tag tag--live">Available</span></div>
+        <p>Old quotes and no-shows get a friendly nudge that puts them back on your schedule &mdash; from a list you already paid for.</p>
+      </div>
+      <div class="card" data-reveal>
+        <div class="card__top"><h3>Instant web-form reply</h3><span class="tag tag--live">Available</span></div>
+        <p>Someone fills out the form on your site and hears back before they close the tab. No lead sits overnight.</p>
+      </div>
+      <div class="card" data-reveal>
+        <div class="card__top"><h3>Ads that feed it</h3><span class="tag tag--live">Available</span></div>
+        <p>We run the Google and local ads that put more calls into the system. Your ad spend stays on your card &mdash; never marked up.</p>
+      </div>
+      <div class="card" data-reveal>
+        <div class="card__top"><h3>Voice AI that answers</h3><span class="tag tag--live">Available</span></div>
+        <p>A voice assistant picks up in your voice when you can't &mdash; answers the question, quotes the basics, and books the job live on the call. It's on now.</p>
+      </div>
+      <div class="card" data-reveal>
+        <div class="card__top"><h3>Books the appointment</h3><span class="tag tag--live">Available</span></div>
+        <p>It doesn't just reply &mdash; it puts the job on the calendar and connects straight to whatever software you already use to book. Nothing new to learn, no double-entry.</p>
+      </div>
+      <div class="card" data-reveal>
+        <div class="card__top"><h3>Google SEO agent</h3><span class="tag tag--live">Available</span></div>
+        <p>An agent that works your Google Business Profile and local search &mdash; posts, reviews, and the listings that decide who Google shows first &mdash; so more of the right calls come in to begin with.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="calc" id="calc">
+    <div class="calc__intro">
+      <p class="eyebrow">Run your own numbers</p>
+      <h2 class="section__head">See what missed calls are costing you.</h2>
+      <p class="calc__lead">We put our fee right in the math. That's the point &mdash; you should see it before you ever talk to us.</p>
+    </div>
+    <div class="calc__panel">
+      <div class="calc__inputs">
+        <label class="field">
+          <span>Missed calls a week</span>
+          <input type="range" min="1" max="40" value="10" data-calc-missed />
+          <output data-calc-missed-out>10</output>
+        </label>
+        <label class="field">
+          <span>Your average ticket</span>
+          <input type="range" min="150" max="5000" step="50" value="600" data-calc-ticket />
+          <output data-calc-ticket-out>$600</output>
+        </label>
+        <label class="field">
+          <span>How often you'd close them</span>
+          <input type="range" min="10" max="80" step="5" value="40" data-calc-close />
+          <output data-calc-close-out>40%</output>
+        </label>
+      </div>
+      <div class="calc__results">
+        <div class="calc__big">
+          <span class="calc__big-label">Revenue you're leaving on the table</span>
+          <span class="calc__big-value" data-calc-revenue>$0<span class="calc__per">/mo</span></span>
+        </div>
+        <div class="calc__split">
+          <div class="calc__split-item">
+            <span class="calc__split-value calc__split-value--money" data-calc-keep>$0</span>
+            <span class="calc__split-label">You keep</span>
+          </div>
+          <div class="calc__split-item">
+            <span class="calc__split-value" data-calc-fee>$0</span>
+            <span class="calc__split-label">Our fee (at the 5&times; floor)</span>
+          </div>
+        </div>
+        <p class="calc__fine">Estimate, and real results vary. You only pay on jobs we actually book, and your fee is sized to your ticket when we talk.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing" id="pricing">
+    <p class="eyebrow">Pricing</p>
+    <h2 class="section__head">Simple, and pointed at your profit.</h2>
+    <ul class="pricing__list">
+      <li data-reveal><strong>A small base plus a fee per booked job.</strong> Capped every month, so it never runs away from you.</li>
+      <li data-reveal><strong>You only pay when a real job books.</strong> You keep at least $5 for every $1 you pay us. That's the floor, not the average.</li>
+      <li data-reveal><strong>Month-to-month.</strong> Cancel anytime. Cancel within 24 hours of signing and you get a full credit.</li>
+      <li data-reveal><strong>Ad spend is always on your card.</strong> Never marked up, never hidden.</li>
+      <li data-reveal><strong>The per-job fee is sized to your average ticket.</strong> We set it together when we talk &mdash; no surprise line items.</li>
+    </ul>
+  </section>
+
+  <section class="founder" id="founder">
+    <div class="founder__inner">
+      <p class="eyebrow">Who's behind it</p>
+      <h2 class="founder__quote">&ldquo;For years I lost calls I never even knew about &mdash; every one was a job that went to someone else, just because I had nothing answering when I couldn't.&rdquo;</h2>
+      <p class="founder__body">I run a home services company here in Marin. Like every operator I know, my phone rang while I was under a sink or on a roof, went to voicemail, and that caller was gone &mdash; onto the next name on Google. Those weren't just missed calls, they were missed jobs I'd already paid to earn, month after month, and I had no way to catch them because I had no AI doing it for me. So I built exactly that: something that answers, texts back, and books the second I can't. Now nothing slips. I'll come to you and demo it on your own phone line &mdash; if it doesn't book jobs, you don't pay for it.</p>
+      <p class="founder__sign">&mdash; Charlie, Nexus Implementations &middot; Marin County, CA</p>
+    </div>
+  </section>
+
+  <section class="lead" id="demo">
+    <div class="lead__inner">
+      <p class="eyebrow">See it from the customer's side</p>
+      <h2 class="section__head">Fill this out and time me.</h2>
+      <p class="lead__sub">Drop your number and Charlie will text you back today, personally. That's the whole pitch &mdash; feel how fast it lands when you're the one who called.</p>
+      <form class="lead__form" data-lead-form>
+        <input type="text" name="name" placeholder="Your name" aria-label="Your name" required />
+        <input type="tel" name="phone" placeholder="Your cell number" aria-label="Your cell number" required />
+        <button type="submit" class="btn btn--primary">Text me the demo</button>
+      </form>
+      <p class="lead__note" data-lead-note></p>
+      <p class="lead__consent">By submitting, you agree to receive a text about your demo. Reply STOP to opt out anytime. We never sell or share your number.</p>
+      <p class="lead__or">Rather book a time? <a href="#demo">Grab a call &rarr;</a></p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__row">
+      <span class="footer__brand">Nexus Implementations</span>
+      <span>Marin County, CA</span>
+      <a href="#demo">Book a call</a>
+    </div>
+    <p class="footer__legal">We only text people who've contacted a business or already work with it. No cold texts, ever. Reply STOP to opt out. We never sell your info.</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var root = document.getElementById('nexus-app');
+  if (!root) return;
+
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---- Hero phone: looping missed-call -> text-back -> booked ----
+  var stage = root.querySelector('[data-phone-stage]');
+  var screen = root.querySelector('[data-phone-screen]');
+  var CALLER = '(415) 555-0142';
+
+  var beats = [
+    {
+      screenClass: 'is-calling',
+      hold: 2200,
+      html:
+        '<div class="call">' +
+        '<div class="call__avatar">?</div>' +
+        '<p class="call__label">Incoming call</p>' +
+        '<p class="call__number">' + CALLER + '</p>' +
+        '<div class="call__dots"><span></span><span></span><span></span></div>' +
+        '</div>'
+    },
+    {
+      screenClass: 'is-missed',
+      hold: 1600,
+      html:
+        '<div class="call call--missed">' +
+        '<div class="call__avatar call__avatar--missed">&#8600;</div>' +
+        '<p class="call__label call__label--missed">Missed call</p>' +
+        '<p class="call__number">' + CALLER + '</p>' +
+        '</div>'
+    },
+    {
+      screenClass: 'is-thread',
+      hold: 2000,
+      html:
+        '<div class="thread">' +
+        '<p class="thread__who">You &middot; auto-text</p>' +
+        '<div class="bubble bubble--out">Hi, this is Marin Plumbing &mdash; sorry we missed your call! What can we help with?</div>' +
+        '</div>'
+    },
+    {
+      screenClass: 'is-thread',
+      hold: 2200,
+      html:
+        '<div class="thread">' +
+        '<div class="bubble bubble--out is-sent">Hi, this is Marin Plumbing &mdash; sorry we missed your call! What can we help with?</div>' +
+        '<div class="bubble bubble--in">Water heater\'s leaking bad, can someone come today?</div>' +
+        '</div>'
+    },
+    {
+      screenClass: 'is-thread',
+      hold: 2600,
+      html:
+        '<div class="thread">' +
+        '<div class="bubble bubble--out is-sent">Sorry we missed your call! What can we help with?</div>' +
+        '<div class="bubble bubble--in">Water heater\'s leaking bad, can someone come today?</div>' +
+        '<div class="bubble bubble--out">Absolutely &mdash; I\'ve got you down for 2pm. Booking it now.</div>' +
+        '</div>'
+    },
+    {
+      screenClass: 'is-booked',
+      hold: 2600,
+      html:
+        '<div class="booked">' +
+        '<div class="booked__check">&#10003;</div>' +
+        '<p class="booked__title">Job booked</p>' +
+        '<p class="booked__meta">Water heater &middot; today 2:00pm</p>' +
+        '<p class="booked__ticket">+ $600 recovered</p>' +
+        '</div>'
+    }
+  ];
+
+  function runPhone() {
+    if (!stage || !screen) return;
+    var i = 0;
+    var render = function () {
+      var beat = beats[i];
+      screen.className = 'phone__screen ' + (beat.screenClass || '');
+      stage.innerHTML = beat.html;
+      i = (i + 1) % beats.length;
+      window.setTimeout(render, beat.hold);
+    };
+    render();
+  }
+
+  if (reducedMotion) {
+    if (stage && screen) {
+      var last = beats[beats.length - 1];
+      screen.className = 'phone__screen ' + (last.screenClass || '');
+      stage.innerHTML = last.html;
+    }
+  } else {
+    runPhone();
+  }
+
+  // ---- Live clock in the phone status bar (cosmetic) ----
+  var timeEl = root.querySelector('[data-phone-time]');
+  if (timeEl) {
+    var setTime = function () {
+      var d = new Date();
+      var h = d.getHours();
+      var m = ('' + d.getMinutes()).padStart(2, '0');
+      h = h % 12 || 12;
+      timeEl.textContent = h + ':' + m;
+    };
+    setTime();
+    window.setInterval(setTime, 30000);
+  }
+
+  // ---- "Run your own numbers" calculator ----
+  var missedEl = root.querySelector('[data-calc-missed]');
+  var ticketEl = root.querySelector('[data-calc-ticket]');
+  var closeEl = root.querySelector('[data-calc-close]');
+
+  var missedOut = root.querySelector('[data-calc-missed-out]');
+  var ticketOut = root.querySelector('[data-calc-ticket-out]');
+  var closeOut = root.querySelector('[data-calc-close-out]');
+
+  var revenueOut = root.querySelector('[data-calc-revenue]');
+  var keepOut = root.querySelector('[data-calc-keep]');
+  var feeOut = root.querySelector('[data-calc-fee]');
+
+  var money = function (n) { return '$' + Math.round(n).toLocaleString('en-US'); };
+
+  function recalc() {
+    if (!missedEl || !ticketEl || !closeEl) return;
+    var missed = Number(missedEl.value);
+    var ticket = Number(ticketEl.value);
+    var close = Number(closeEl.value) / 100;
+
+    var WEEKS_PER_MONTH = 4.33;
+    var jobsPerMonth = missed * WEEKS_PER_MONTH * close;
+    var recovered = jobsPerMonth * ticket;
+
+    var fee = recovered / 6;
+    var keep = recovered - fee;
+
+    if (missedOut) missedOut.textContent = String(missed);
+    if (ticketOut) ticketOut.textContent = money(ticket);
+    if (closeOut) closeOut.textContent = Number(closeEl.value) + '%';
+
+    if (revenueOut) revenueOut.innerHTML = money(recovered) + '<span class="calc__per">/mo</span>';
+    if (keepOut) keepOut.textContent = money(keep);
+    if (feeOut) feeOut.textContent = money(fee);
+  }
+
+  [missedEl, ticketEl, closeEl].forEach(function (el) {
+    if (el) el.addEventListener('input', recalc);
+  });
+  recalc();
+
+  // ---- Lead form — personal-reply fallback (no backend wired up) ----
+  var form = root.querySelector('[data-lead-form]');
+  var note = root.querySelector('[data-lead-note]');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (note) {
+        note.textContent = "Got it — Charlie will text you back today, personally. Keep an eye on your phone.";
+        note.classList.add('is-shown');
+      }
+      form.reset();
+    });
+  }
+})();
+</script>
