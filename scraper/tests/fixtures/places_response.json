@@ -1,0 +1,29 @@
+{
+  "places": [
+    {
+      "displayName": {"text": "AAA 24 Hour Emergency Plumbing", "languageCode": "en"},
+      "nationalPhoneNumber": "(510) 555-0134",
+      "formattedAddress": "500 Broadway, Oakland, CA 94607, USA",
+      "addressComponents": [
+        {"longText": "Oakland", "shortText": "Oakland", "types": ["locality", "political"]}
+      ],
+      "types": ["plumber", "point_of_interest", "establishment"],
+      "businessStatus": "OPERATIONAL"
+    },
+    {
+      "displayName": {"text": "Closed Plumbers Inc"},
+      "nationalPhoneNumber": "(510) 555-0000",
+      "formattedAddress": "1 Gone St, Oakland, CA 94607, USA",
+      "types": ["plumber"],
+      "businessStatus": "CLOSED_PERMANENTLY"
+    },
+    {
+      "displayName": {"text": "South Bay Rooter Service"},
+      "nationalPhoneNumber": "(408) 555-0177",
+      "formattedAddress": "22 First St, San Jose, CA 95113, USA",
+      "types": ["plumber", "establishment"],
+      "businessStatus": "OPERATIONAL"
+    }
+  ],
+  "nextPageToken": "tok123"
+}
