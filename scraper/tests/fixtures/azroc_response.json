@@ -1,0 +1,48 @@
+{
+  "actions": [
+    {
+      "id": "1;a",
+      "state": "SUCCESS",
+      "returnValue": {
+        "records": [
+          {
+            "BusinessName": "DESERT SUN PLUMBING LLC",
+            "LicenseNumber": "ROC345678",
+            "Classification": "CR-37 PLUMBING",
+            "Phone": "602-555-0177",
+            "City": "PHOENIX",
+            "QualifyingParty": "ROBERT M DELGADO",
+            "Status": "Active"
+          },
+          {
+            "BusinessName": "VALLEY WIDE ELECTRIC INC",
+            "LicenseNumber": "ROC456789",
+            "Classification": "CR-11 ELECTRICAL",
+            "Phone": "(480) 555-0142",
+            "City": "MESA",
+            "QualifyingParty": "ANGELA K TRAN",
+            "Status": "Active"
+          },
+          {
+            "BusinessName": "OLD PUEBLO POOLS",
+            "LicenseNumber": "ROC567890",
+            "Classification": "CR-6 SWIMMING POOLS",
+            "Phone": "520-555-0100",
+            "City": "TUCSON",
+            "QualifyingParty": "SAM POOLE",
+            "Status": "Active"
+          },
+          {
+            "BusinessName": "EXPIRED PLUMBING CO",
+            "LicenseNumber": "ROC111111",
+            "Classification": "CR-37 PLUMBING",
+            "Phone": "602-555-0111",
+            "City": "PHOENIX",
+            "QualifyingParty": "OLD OWNER",
+            "Status": "Expired"
+          }
+        ]
+      }
+    }
+  ]
+}
