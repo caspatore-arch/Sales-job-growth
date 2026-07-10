@@ -1,0 +1,21 @@
+{
+  "name": "leadscore",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Nexus lead scraper v2 — discover home-service businesses, enrich with contact/social data, score AI-call-handling maturity, export qualified leads hottest-first.",
+  "bin": {
+    "leadscore": "src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dry-run": "node src/index.js --dry-run"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "exceljs": "^4.4.0"
+  }
+}
