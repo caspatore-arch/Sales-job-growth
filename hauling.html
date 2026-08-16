@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Haul Yeah — College Kids Who Haul Your Junk</title>
+  <meta name="description" content="Energetic college students hauling junk, moving your stuff, running dump trips and dropping dumpsters. Get an instant price and book a slot in under a minute." />
+
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink:  '#080a07',
+            coal: '#111511',
+            slab: '#181d18',
+            lime: '#c4ff2f',
+            limed:'#a5e01a',
+            grape:'#8b5cf6',
+            flame:'#ff6a2b',
+          },
+          fontFamily: {
+            display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+            body: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .font-display { font-family: 'Space Grotesk', system-ui, sans-serif; }
+
+    /* Grain / glow flourishes */
+    .glow-lime  { box-shadow: 0 0 0 1px rgba(196,255,47,.25), 0 20px 60px -20px rgba(196,255,47,.45); }
+    .text-stroke { -webkit-text-stroke: 2px #c4ff2f; color: transparent; }
+
+    /* Custom radio card selected state */
+    .svc input:checked + .card,
+    .size input:checked + .card {
+      border-color: #c4ff2f;
+      background: linear-gradient(180deg, rgba(196,255,47,.12), rgba(196,255,47,.03));
+      box-shadow: 0 0 0 1px #c4ff2f, 0 18px 50px -22px rgba(196,255,47,.6);
+      transform: translateY(-3px);
+    }
+    .svc .card, .size .card { transition: all .18s ease; }
+
+    /* Calendar slot */
+    .slot.is-open:hover { border-color:#c4ff2f; color:#c4ff2f; }
+    .slot.is-selected { background:#c4ff2f; color:#080a07; border-color:#c4ff2f; font-weight:700; }
+    .slot.is-booked { opacity:.28; cursor:not-allowed; text-decoration:line-through; }
+
+    @keyframes pop { 0%{transform:scale(.96);opacity:0} 100%{transform:scale(1);opacity:1} }
+    .pop { animation: pop .25s ease both; }
+
+    .marquee { animation: scroll 22s linear infinite; }
+    @keyframes scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  </style>
+</head>
+
+<body class="bg-ink text-white antialiased selection:bg-lime selection:text-ink">
+
+  <!-- ================= NAV ================= -->
+  <header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-ink/70 border-b border-white/5">
+    <nav class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+      <a href="#top" class="font-display font-bold text-xl tracking-tight flex items-center gap-2">
+        <span class="inline-grid place-items-center h-8 w-8 rounded-lg bg-lime text-ink text-lg">🛻</span>
+        Haul<span class="text-lime">Yeah</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm text-white/70 font-medium">
+        <a href="#services" class="hover:text-lime transition">Services</a>
+        <a href="#how" class="hover:text-lime transition">How it works</a>
+        <a href="#quote" class="hover:text-lime transition">Instant Quote</a>
+      </div>
+      <a href="#quote" class="rounded-full bg-lime text-ink font-bold text-sm px-5 py-2.5 hover:bg-limed transition glow-lime">
+        Get my price →
+      </a>
+    </nav>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <section id="top" class="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
+    <!-- background blobs -->
+    <div class="pointer-events-none absolute -top-24 -left-24 h-80 w-80 rounded-full bg-lime/20 blur-3xl"></div>
+    <div class="pointer-events-none absolute top-40 -right-24 h-96 w-96 rounded-full bg-grape/20 blur-3xl"></div>
+
+    <div class="relative max-w-6xl mx-auto px-5 grid lg:grid-cols-2 gap-14 items-center">
+      <div>
+        <span class="inline-flex items-center gap-2 rounded-full border border-lime/40 bg-lime/10 text-lime text-xs font-semibold px-3 py-1.5 mb-6">
+          <span class="h-2 w-2 rounded-full bg-lime animate-pulse"></span>
+          Booking this week around campus
+        </span>
+
+        <h1 class="font-display font-bold leading-[0.95] text-5xl sm:text-6xl lg:text-7xl">
+          Young backs.<br>
+          <span class="text-lime">Big trucks.</span><br>
+          Your junk, <span class="text-stroke">gone.</span>
+        </h1>
+
+        <p class="mt-6 text-lg text-white/70 max-w-md">
+          We're college kids with strong legs and empty truck beds. Point at the mess. We load it, haul it, and dump it. You barely lift a finger.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#quote" class="rounded-full bg-lime text-ink font-bold px-7 py-4 hover:bg-limed transition glow-lime">
+            Get an instant price
+          </a>
+          <a href="#how" class="rounded-full border border-white/15 px-7 py-4 font-semibold text-white/80 hover:border-lime hover:text-lime transition">
+            See how it works
+          </a>
+        </div>
+
+        <div class="mt-8 flex items-center gap-6 text-sm text-white/50">
+          <div><span class="text-white font-bold text-lg">2,400+</span> loads hauled</div>
+          <div class="h-6 w-px bg-white/15"></div>
+          <div><span class="text-white font-bold text-lg">⭐ 4.9</span> from neighbors</div>
+        </div>
+      </div>
+
+      <!-- Hero card -->
+      <div class="relative">
+        <div class="rounded-3xl border border-white/10 bg-coal p-6 md:p-8 glow-lime">
+          <div class="flex items-center justify-between mb-6">
+            <p class="font-display font-semibold text-lg">What we grab</p>
+            <span class="text-xs text-lime font-semibold">same-day possible</span>
+          </div>
+          <ul class="grid grid-cols-2 gap-3 text-sm">
+            <li class="rounded-xl bg-slab p-4">🛋️ Old couches</li>
+            <li class="rounded-xl bg-slab p-4">🧊 Fridges & junk</li>
+            <li class="rounded-xl bg-slab p-4">📦 Move-out piles</li>
+            <li class="rounded-xl bg-slab p-4">🌳 Yard & reno debris</li>
+            <li class="rounded-xl bg-slab p-4">🏗️ Dumpster drops</li>
+            <li class="rounded-xl bg-slab p-4">🛏️ Mattresses</li>
+          </ul>
+          <a href="#quote" class="mt-6 block text-center rounded-xl bg-lime text-ink font-bold py-3 hover:bg-limed transition">
+            Price it in 30 seconds
+          </a>
+        </div>
+        <div class="absolute -bottom-5 -left-5 rotate-[-6deg] rounded-2xl bg-flame text-ink font-display font-bold px-4 py-2 shadow-xl">
+          No sketchy hidden fees
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MARQUEE ================= -->
+  <div class="border-y border-white/10 bg-lime text-ink overflow-hidden py-3">
+    <div class="marquee whitespace-nowrap font-display font-bold text-lg flex gap-8">
+      <span class="flex gap-8">
+        <span>JUNK REMOVAL •</span><span>MOVING HELP •</span><span>DUMP RUNS •</span><span>DUMPSTER RENTAL •</span><span>GARAGE CLEANOUTS •</span><span>MATTRESS PICKUP •</span>
+      </span>
+      <span class="flex gap-8" aria-hidden="true">
+        <span>JUNK REMOVAL •</span><span>MOVING HELP •</span><span>DUMP RUNS •</span><span>DUMPSTER RENTAL •</span><span>GARAGE CLEANOUTS •</span><span>MATTRESS PICKUP •</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- ================= INSTANT QUOTE ================= -->
+  <section id="quote" class="py-20 md:py-28">
+    <div class="max-w-4xl mx-auto px-5">
+      <div class="text-center mb-10">
+        <p class="text-lime font-semibold text-sm uppercase tracking-widest mb-3">Instant Quote</p>
+        <h2 class="font-display font-bold text-4xl md:text-5xl">Get a price. No phone tag.</h2>
+        <p class="mt-3 text-white/60">Tap a couple buttons. Watch the number update live.</p>
+      </div>
+
+      <div class="rounded-3xl border border-white/10 bg-coal p-6 md:p-10">
+
+        <!-- STEP 1 -->
+        <div class="mb-8">
+          <p class="font-display font-semibold text-lg mb-4"><span class="text-lime">1.</span> What do you need?</p>
+          <div class="svc grid sm:grid-cols-3 gap-4">
+            <label class="cursor-pointer">
+              <input type="radio" name="service" value="junk" class="sr-only" checked>
+              <div class="card rounded-2xl border border-white/10 bg-slab p-5 h-full">
+                <div class="text-3xl mb-2">🗑️</div>
+                <p class="font-semibold">Junk Removal</p>
+                <p class="text-sm text-white/50 mt-1">We load & haul it away</p>
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="service" value="moving" class="sr-only">
+              <div class="card rounded-2xl border border-white/10 bg-slab p-5 h-full">
+                <div class="text-3xl mb-2">📦</div>
+                <p class="font-semibold">Moving Help</p>
+                <p class="text-sm text-white/50 mt-1">Muscle + a truck</p>
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="service" value="dumpster" class="sr-only">
+              <div class="card rounded-2xl border border-white/10 bg-slab p-5 h-full">
+                <div class="text-3xl mb-2">🏗️</div>
+                <p class="font-semibold">Dumpster Rental</p>
+                <p class="text-sm text-white/50 mt-1">Dropped at your door</p>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="mb-8">
+          <p class="font-display font-semibold text-lg mb-4"><span class="text-lime">2.</span> How much are we talking?</p>
+          <div class="size grid sm:grid-cols-3 gap-4">
+            <label class="cursor-pointer">
+              <input type="radio" name="size" value="small" class="sr-only" checked>
+              <div class="card rounded-2xl border border-white/10 bg-slab p-5 h-full">
+                <p class="font-semibold">Small</p>
+                <p class="text-sm text-white/50 mt-1" data-size-hint="small">Single item / a corner</p>
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="size" value="medium" class="sr-only">
+              <div class="card rounded-2xl border border-white/10 bg-slab p-5 h-full">
+                <p class="font-semibold">Medium</p>
+                <p class="text-sm text-white/50 mt-1" data-size-hint="medium">Pick-up truck load</p>
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="size" value="large" class="sr-only">
+              <div class="card rounded-2xl border border-white/10 bg-slab p-5 h-full">
+                <p class="font-semibold">Large</p>
+                <p class="text-sm text-white/50 mt-1" data-size-hint="large">Full property / big job</p>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- STEP 2b: add-ons -->
+        <div class="mb-8">
+          <p class="font-display font-semibold text-lg mb-4"><span class="text-lime">+</span> Any extras?</p>
+          <div class="flex flex-wrap gap-3">
+            <label class="cursor-pointer">
+              <input type="checkbox" class="peer sr-only" id="addon-rush">
+              <span class="inline-block rounded-full border border-white/15 bg-slab px-4 py-2 text-sm peer-checked:border-flame peer-checked:text-flame peer-checked:bg-flame/10 transition">⚡ Same-day rush</span>
+            </label>
+            <label class="cursor-pointer">
+              <input type="checkbox" class="peer sr-only" id="addon-stairs">
+              <span class="inline-block rounded-full border border-white/15 bg-slab px-4 py-2 text-sm peer-checked:border-grape peer-checked:text-grape peer-checked:bg-grape/10 transition">🪜 Stairs / heavy lift</span>
+            </label>
+            <label class="cursor-pointer">
+              <input type="checkbox" class="peer sr-only" id="addon-eco">
+              <span class="inline-block rounded-full border border-white/15 bg-slab px-4 py-2 text-sm peer-checked:border-lime peer-checked:text-lime peer-checked:bg-lime/10 transition">♻️ Donate / recycle sort</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- STEP 3: PRICE -->
+        <div class="rounded-2xl border border-lime/30 bg-gradient-to-b from-lime/10 to-transparent p-6 md:p-8 text-center">
+          <p class="text-sm uppercase tracking-widest text-lime font-semibold mb-2">Your estimate</p>
+          <p id="price" class="font-display font-bold text-5xl md:text-6xl text-white">$75–$125</p>
+          <p id="price-note" class="mt-3 text-white/60 text-sm">Junk removal • small load. Final price locked when we see it — no surprises.</p>
+          <a href="#book" class="mt-6 inline-block rounded-full bg-lime text-ink font-bold px-8 py-4 hover:bg-limed transition glow-lime">
+            Looks good — pick a time ↓
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BOOKING CALENDAR ================= -->
+  <section id="book" class="py-20 md:py-28 border-t border-white/5">
+    <div class="max-w-5xl mx-auto px-5">
+      <div class="text-center mb-10">
+        <p class="text-lime font-semibold text-sm uppercase tracking-widest mb-3">Pick your slot</p>
+        <h2 class="font-display font-bold text-4xl md:text-5xl">When should we roll up?</h2>
+        <p class="mt-3 text-white/60">Tap an open square. That's the booking done.</p>
+      </div>
+
+      <div class="rounded-3xl border border-white/10 bg-coal p-4 md:p-8 overflow-x-auto">
+        <div id="calendar" class="min-w-[640px]"></div>
+      </div>
+
+      <!-- Confirmation bar -->
+      <div id="confirm-bar" class="mt-6 rounded-2xl border border-white/10 bg-slab p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <p class="text-sm text-white/50">Your booking</p>
+          <p id="confirm-text" class="font-display font-semibold text-lg text-white/60">Pick a time slot above to lock it in.</p>
+        </div>
+        <button id="book-btn" disabled
+          class="rounded-full bg-white/10 text-white/40 font-bold px-8 py-4 cursor-not-allowed transition">
+          Confirm booking
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SERVICES ================= -->
+  <section id="services" class="py-20 md:py-28 border-t border-white/5">
+    <div class="max-w-6xl mx-auto px-5">
+      <h2 class="font-display font-bold text-4xl md:text-5xl mb-3">Stuff we haul off your hands</h2>
+      <p class="text-white/60 mb-12 max-w-lg">Four ways we make the mess disappear. All muscle included.</p>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="rounded-2xl border border-white/10 bg-coal p-6 hover:border-lime/40 transition">
+          <div class="text-4xl mb-4">🗑️</div>
+          <h3 class="font-display font-semibold text-xl mb-2">Junk Removal</h3>
+          <p class="text-white/60 text-sm">Point, we lift. Furniture, appliances, that pile in the garage — loaded and gone same day.</p>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-coal p-6 hover:border-lime/40 transition">
+          <div class="text-4xl mb-4">🚚</div>
+          <h3 class="font-display font-semibold text-xl mb-2">Dump Runs</h3>
+          <p class="text-white/60 text-sm">Got a trailer of debris? We take the trips to the dump so you skip the lines and the fees hassle.</p>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-coal p-6 hover:border-lime/40 transition">
+          <div class="text-4xl mb-4">📦</div>
+          <h3 class="font-display font-semibold text-xl mb-2">Moving Help</h3>
+          <p class="text-white/60 text-sm">Whole apartment or one heavy couch up three flights. Strong backs, a truck, zero drama.</p>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-coal p-6 hover:border-lime/40 transition">
+          <div class="text-4xl mb-4">🏗️</div>
+          <h3 class="font-display font-semibold text-xl mb-2">Dumpster Rental</h3>
+          <p class="text-white/60 text-sm">We drop a dumpster, you fill it on your time, we haul it away. Perfect for renos and big cleanouts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HOW IT WORKS ================= -->
+  <section id="how" class="py-20 md:py-28 border-t border-white/5">
+    <div class="max-w-5xl mx-auto px-5">
+      <h2 class="font-display font-bold text-4xl md:text-5xl mb-12 text-center">Three steps. Done.</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="rounded-2xl bg-coal border border-white/10 p-7">
+          <div class="font-display font-bold text-5xl text-lime mb-4">1</div>
+          <h3 class="font-semibold text-lg mb-2">Get your price</h3>
+          <p class="text-white/60 text-sm">Two taps in the quote tool. Real number, right now.</p>
+        </div>
+        <div class="rounded-2xl bg-coal border border-white/10 p-7">
+          <div class="font-display font-bold text-5xl text-lime mb-4">2</div>
+          <h3 class="font-semibold text-lg mb-2">Pick a slot</h3>
+          <p class="text-white/60 text-sm">Grab any open square on the calendar. Same-day if it's open.</p>
+        </div>
+        <div class="rounded-2xl bg-coal border border-white/10 p-7">
+          <div class="font-display font-bold text-5xl text-lime mb-4">3</div>
+          <h3 class="font-semibold text-lg mb-2">We show up</h3>
+          <p class="text-white/60 text-sm">A crew of students rolls up, loads everything, hauls it off.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FINAL CTA ================= -->
+  <section class="py-20 md:py-28 border-t border-white/5">
+    <div class="max-w-4xl mx-auto px-5">
+      <div class="rounded-3xl bg-lime text-ink p-10 md:p-16 text-center glow-lime">
+        <h2 class="font-display font-bold text-4xl md:text-5xl mb-4">Got a pile? Let's make it vanish.</h2>
+        <p class="text-ink/70 text-lg mb-8 max-w-md mx-auto">Price it, book it, forget it. We'll handle the heavy stuff.</p>
+        <a href="#quote" class="inline-block rounded-full bg-ink text-lime font-bold px-10 py-5 text-lg hover:bg-coal transition">
+          Get my instant price →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-white/10 py-10">
+    <div class="max-w-6xl mx-auto px-5 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/50">
+      <div class="font-display font-bold text-lg text-white flex items-center gap-2">
+        <span class="inline-grid place-items-center h-7 w-7 rounded-lg bg-lime text-ink">🛻</span>
+        Haul<span class="text-lime">Yeah</span>
+      </div>
+      <p>Run by college students. Insured & background-checked. Text us: (555) HAUL-YEAH</p>
+      <p>© <span id="year"></span> HaulYeah Hauling Co.</p>
+    </div>
+  </footer>
+
+  <!-- ================= SCRIPT ================= -->
+  <script>
+  (function () {
+    'use strict';
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* ---------- INSTANT QUOTE ENGINE ---------- */
+    // Base price ranges [low, high] by service + size.
+    const PRICING = {
+      junk:     { small: [75, 125],  medium: [150, 275], large: [350, 600] },
+      moving:   { small: [90, 150],  medium: [200, 350], large: [450, 750] },
+      dumpster: { small: [250, 350], medium: [350, 500], large: [500, 700] },
+    };
+
+    const SERVICE_LABELS = { junk: 'Junk removal', moving: 'Moving help', dumpster: 'Dumpster rental' };
+    const SIZE_LABELS = { small: 'small load', medium: 'medium load', large: 'large job' };
+
+    // Size hint text changes per service so it reads naturally.
+    const SIZE_HINTS = {
+      junk:     { small: 'Single item / a corner', medium: 'Pick-up truck load', large: 'Full property cleanout' },
+      moving:   { small: 'A few heavy items',        medium: 'Studio / 1-bed apt',  large: 'Full house move' },
+      dumpster: { small: '10-yard bin',              medium: '20-yard bin',         large: '30-yard bin' },
+    };
+
+    const priceEl = document.getElementById('price');
+    const noteEl  = document.getElementById('price-note');
+
+    function getSelected(name) {
+      const el = document.querySelector('input[name="' + name + '"]:checked');
+      return el ? el.value : null;
+    }
+
+    function money(n) { return '$' + Math.round(n).toLocaleString(); }
+
+    function updateHints(service) {
+      document.querySelectorAll('[data-size-hint]').forEach(function (el) {
+        const size = el.getAttribute('data-size-hint');
+        el.textContent = SIZE_HINTS[service][size];
+      });
+    }
+
+    function calcQuote() {
+      const service = getSelected('service');
+      const size = getSelected('size');
+      let [low, high] = PRICING[service][size];
+
+      const extras = [];
+      // Same-day rush: +20%
+      if (document.getElementById('addon-rush').checked) {
+        low *= 1.20; high *= 1.20; extras.push('same-day rush');
+      }
+      // Stairs / heavy: flat +$40 / +$80
+      if (document.getElementById('addon-stairs').checked) {
+        low += 40; high += 80; extras.push('stairs & heavy lift');
+      }
+      // Donate / recycle sorting: flat +$25 / +$50
+      if (document.getElementById('addon-eco').checked) {
+        low += 25; high += 50; extras.push('donation sorting');
+      }
+
+      priceEl.textContent = money(low) + '–' + money(high);
+      priceEl.classList.remove('pop'); void priceEl.offsetWidth; priceEl.classList.add('pop');
+
+      let note = SERVICE_LABELS[service] + ' • ' + SIZE_LABELS[size];
+      if (extras.length) note += ' + ' + extras.join(', ');
+      note += '. Final price locked when we see it — no surprises.';
+      noteEl.textContent = note;
+
+      updateHints(service);
+    }
+
+    // Wire up every input in the quote widget.
+    document.querySelectorAll('input[name="service"], input[name="size"], #addon-rush, #addon-stairs, #addon-eco')
+      .forEach(function (el) { el.addEventListener('change', calcQuote); });
+
+    calcQuote(); // initial render
+
+    /* ---------- BOOKING CALENDAR ---------- */
+    const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const SLOTS = ['8–10 AM', '10–12 PM', '12–2 PM', '2–4 PM', '4–6 PM'];
+    const calEl = document.getElementById('calendar');
+    const confirmText = document.getElementById('confirm-text');
+    const bookBtn = document.getElementById('book-btn');
+
+    let selectedSlot = null;
+
+    // Build the next 7 days starting today.
+    const today = new Date();
+    const week = [];
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(today);
+      d.setDate(today.getDate() + i);
+      week.push(d);
+    }
+
+    // Deterministic pseudo-random "booked" pattern so the mock looks alive.
+    function isBooked(dayIdx, slotIdx) {
+      return ((dayIdx * 7 + slotIdx * 3 + 2) % 5) === 0;
+    }
+
+    function buildCalendar() {
+      let html = '<div class="grid" style="grid-template-columns: 80px repeat(7, 1fr); gap:8px;">';
+
+      // Header row: empty corner + day columns
+      html += '<div></div>';
+      week.forEach(function (d, i) {
+        const label = i === 0 ? 'Today' : DAYS[d.getDay()];
+        html += '<div class="text-center pb-1">' +
+                  '<div class="text-xs font-semibold ' + (i === 0 ? 'text-lime' : 'text-white/50') + '">' + label + '</div>' +
+                  '<div class="text-sm font-bold">' + d.getDate() + '</div>' +
+                '</div>';
+      });
+
+      // Time rows
+      SLOTS.forEach(function (slot, sIdx) {
+        html += '<div class="text-xs text-white/40 flex items-center justify-end pr-2">' + slot + '</div>';
+        week.forEach(function (d, dIdx) {
+          const booked = isBooked(dIdx, sIdx);
+          const cls = booked ? 'slot is-booked' : 'slot is-open';
+          const attrs = booked ? '' : ' data-day="' + dIdx + '" data-slot="' + sIdx + '" role="button" tabindex="0"';
+          html += '<div class="' + cls + ' text-center text-xs py-3 rounded-lg border border-white/10 bg-slab cursor-pointer transition"' + attrs + '>' +
+                    (booked ? 'Full' : 'Open') +
+                  '</div>';
+        });
+      });
+
+      html += '</div>';
+      calEl.innerHTML = html;
+    }
+
+    function selectSlot(el) {
+      calEl.querySelectorAll('.slot.is-selected').forEach(function (s) { s.classList.remove('is-selected'); });
+      el.classList.add('is-selected');
+
+      const dayIdx = +el.getAttribute('data-day');
+      const slotIdx = +el.getAttribute('data-slot');
+      const d = week[dayIdx];
+      const dayName = dayIdx === 0 ? 'Today' : DAYS[d.getDay()];
+      const dateStr = d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+
+      selectedSlot = { day: dayName, date: dateStr, time: SLOTS[slotIdx] };
+
+      confirmText.textContent = dayName + ', ' + dateStr + ' · ' + SLOTS[slotIdx] + ' · ' + priceEl.textContent;
+      confirmText.classList.remove('text-white/60');
+      confirmText.classList.add('text-white');
+
+      bookBtn.disabled = false;
+      bookBtn.className = 'rounded-full bg-lime text-ink font-bold px-8 py-4 hover:bg-limed transition cursor-pointer glow-lime';
+    }
+
+    calEl.addEventListener('click', function (e) {
+      const slot = e.target.closest('.slot.is-open');
+      if (slot) selectSlot(slot);
+    });
+    calEl.addEventListener('keydown', function (e) {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('is-open')) {
+        e.preventDefault();
+        selectSlot(e.target);
+      }
+    });
+
+    bookBtn.addEventListener('click', function () {
+      if (!selectedSlot) return;
+      confirmText.innerHTML = '✅ You\'re booked for <span class="text-lime">' + selectedSlot.day + ', ' +
+        selectedSlot.date + ' · ' + selectedSlot.time + '</span> — we\'ll text a confirmation. Estimate: ' + priceEl.textContent + '.';
+      bookBtn.textContent = 'Booked! 🎉';
+      bookBtn.disabled = true;
+      bookBtn.className = 'rounded-full bg-white/10 text-lime font-bold px-8 py-4 cursor-default transition';
+    });
+
+    buildCalendar();
+  })();
+  </script>
+</body>
+</html>
